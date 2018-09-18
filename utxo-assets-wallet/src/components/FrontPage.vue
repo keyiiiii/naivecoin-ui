@@ -30,7 +30,7 @@
         <div class="five columns">
           <div v-for="txIn in tx.txIns">
             <div v-if="txIn.signature === ''">coinbase</div>
-            <div class="break-word" v-else>{{ txIn.txOutId }} {{ txIn.txOutIndex }}</div>
+            <div class="break-word" v-else>{{ txIn.txHash }} {{ txIn.txOutIndex }}</div>
           </div>
         </div>
         <div class="one columns">

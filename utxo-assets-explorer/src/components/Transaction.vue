@@ -6,7 +6,7 @@
     <h5>TxIns</h5>
     <div class="txIn break-word" v-for="txIn in transaction.txIns">
       <div class="row bold" v-if="txIn.signature ===''">Coinbase transaction</div>
-      <div class="row">TxOutId: <router-link :to="{ name: 'Transaction', params: {id: txIn.txOutId }}"> <span>{{ txIn.txOutId }}</span></router-link></div>
+      <div class="row">txHash: <router-link :to="{ name: 'Transaction', params: {id: txIn.txHash }}"> <span>{{ txIn.txHash }}</span></router-link></div>
       <div class="row">TxOutIndex:  {{ txIn.txOutIndex }}</div>
       <div class="row">Signature: {{ txIn.signature }}</div>
     </div>

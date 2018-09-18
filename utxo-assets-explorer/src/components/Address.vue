@@ -6,8 +6,8 @@
 
     <h4>Unspent transaction outputs</h4>
     <div class="txOut" v-for="uTxo in addressData.unspentTxOuts">
-      <div class="row">txOutId:
-        <router-link :to="{ name: 'Transaction', params :{ id: uTxo.txOutId}}"><span>{{ uTxo.txOutId }}</span>
+      <div class="row">txHash:
+        <router-link :to="{ name: 'Transaction', params :{ id: uTxo.txHash}}"><span>{{ uTxo.txHash }}</span>
         </router-link></div>
       <div class="row">txOutIndex: {{ uTxo.txOutIndex }}</div>
       <div class="row">amount: {{ uTxo.amount }}</div>

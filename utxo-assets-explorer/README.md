@@ -1,6 +1,6 @@
-# naivecoin-explorer
+# utxo-assets-explorer
 
-The dev server by default expects naivecoin to run on http://localhost:3001
+The dev server by default expects utxo-assets to run on http://localhost:3001
 
 ## Build Setup
 

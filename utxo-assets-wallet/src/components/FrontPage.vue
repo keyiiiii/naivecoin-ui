@@ -90,7 +90,8 @@
       },
       sendTransaction: function() {
         this.$http.post('/api/sendTransaction',
-          {'amount' : parseInt(this.receiverAmount), 'address' : this.receiverAddress}
+          // TODO: assetId
+          {'amount' : parseInt(this.receiverAmount), 'address' : this.receiverAddress, 'assetId': 'native'}
           )
           .then(() => {
             this.receiverAmount = null;

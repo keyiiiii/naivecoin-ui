@@ -5,6 +5,7 @@
     </div>
     <div class="row">
       Your balance: <h5>{{ balance }}</h5>
+      Your genesis balance: <h5>{{ genesisBalance }}</h5>
     </div>
     <br>
     <h5>Send coins</h5>
@@ -62,6 +63,7 @@
       return {
         'address': null,
         'balance': null,
+        'genesisBalance': null,
         'transactionPool': [],
         'receiverAddress': null,
         'receiverAmount' : null
@@ -83,9 +85,13 @@
           })
       },
       getBalance: function () {
-        this.$http.get('/api/balance')
+        this.$http.get('/api/balance/native')
           .then(resp => {
             this.balance = resp.data.balance;
+          });
+        this.$http.get('/api/balance/genesis')
+          .then(resp => {
+            this.genesisBalance = resp.data.balance;
           })
       },
       sendTransaction: function() {

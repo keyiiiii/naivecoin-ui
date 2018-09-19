@@ -9,11 +9,13 @@
       <div class="row">txHash: <router-link :to="{ name: 'Transaction', params: {id: txIn.txHash }}"> <span>{{ txIn.txHash }}</span></router-link></div>
       <div class="row">TxOutIndex:  {{ txIn.txOutIndex }}</div>
       <div class="row">Signature: {{ txIn.signature }}</div>
+      <div class="row">AssetId: {{ txIn.assetId }}</div>
     </div>
     <h5>TxOuts</h5>
     <div class="txIn break-word" v-for="txOut in transaction.txOuts">
       <div class="row">Address: <router-link :to="{ name: 'Address', params: {address: txOut.address}}"> <span>{{ txOut.address }}</span></router-link> </div>
       <div class="row">Amount: {{ txOut.amount}}</div>
+      <div class="row">AssetId: {{ txOut.assetId }}</div>
     </div>
   </div>
 </template>

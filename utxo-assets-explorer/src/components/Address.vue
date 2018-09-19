@@ -2,7 +2,8 @@
   <div>
     <h3>Address</h3>
     <h4 class="break-word">{{$route.params.address }}</h4>
-    <h4>Total amount: {{  totalAmount(addressData.unspentTxOuts) }} </h4>
+    <h4>Total genesis amount: {{  totalGenesisAmount(addressData.unspentTxOuts) }} </h4>
+    <h4>Total native amount: {{  totalNativeAmount(addressData.unspentTxOuts) }} </h4>
 
     <h4>Unspent transaction outputs</h4>
     <div class="txOut" v-for="uTxo in addressData.unspentTxOuts">
@@ -11,6 +12,7 @@
         </router-link></div>
       <div class="row">txOutIndex: {{ uTxo.txOutIndex }}</div>
       <div class="row">amount: {{ uTxo.amount }}</div>
+      <div class="row">assetId: {{ uTxo.assetId }}</div>
       <div class="row break-word">address: {{ uTxo.address }}</div>
     </div>
   </div>
@@ -34,10 +36,16 @@
             this.addressData = resp.data;
           })
       },
-      totalAmount: function(unspentOutputs) {
+      totalGenesisAmount: function(unspentOutputs) {
 
         return _(unspentOutputs)
-          .map(uTxo => uTxo.amount)
+          .map(uTxo => uTxo.assetId === 'genesis' ? uTxo.amount : 0)
+          .sum();
+      },
+      totalNativeAmount: function(unspentOutputs) {
+
+        return _(unspentOutputs)
+          .map(uTxo => uTxo.assetId === 'native' ? uTxo.amount : 0)
           .sum();
       },
       trimAddress: function(address) {

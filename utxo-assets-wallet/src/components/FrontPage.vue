@@ -11,13 +11,21 @@
     <h5>Send coins</h5>
     <form>
       <div class="row">
-        <div class="ten columns">
+        <div class="twelve columns">
           <label for="receiverAddress">Receiver address</label>
           <input v-model="receiverAddress" class="u-full-width" type="text" placeholder="04f72a4541275aeb4344a8b04..." id="receiverAddress">
         </div>
-        <div class="two columns">
+        <div class="twelve columns">
           <label for="amount">Amount</label>
           <input v-model="receiverAmount" class="u-full-width" type="number" placeholder="0" id="amount">
+        </div>
+        <div class="twelve columns">
+          <label for="assetId">AssetId</label>
+          <select v-model="assetId" id="assetId">
+            <option disabled value="">Please select one</option>
+            <option>native</option>
+            <option>genesis</option>
+          </select>
         </div>
       </div>
       <button v-on:click="sendTransaction" class="button-primary">Send</button>
@@ -66,7 +74,8 @@
         'genesisBalance': null,
         'transactionPool': [],
         'receiverAddress': null,
-        'receiverAmount' : null
+        'receiverAmount' : null,
+        'assetId': null,
       }
     },
     created() {
@@ -96,12 +105,12 @@
       },
       sendTransaction: function() {
         this.$http.post('/api/sendTransaction',
-          // TODO: assetId
-          {'amount' : parseInt(this.receiverAmount), 'address' : this.receiverAddress, 'assetId': 'native'}
+          {'amount' : parseInt(this.receiverAmount), 'address' : this.receiverAddress, 'assetId': this.assetId}
           )
           .then(() => {
             this.receiverAmount = null;
             this.receiverAddress = null;
+            this.assetId = null;
             this.init();
           })
       },
